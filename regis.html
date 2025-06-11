@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMOLIR PENDAFTARAN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2f7;
+            /* Light blue background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            /* Align to top for longer forms */
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .registration-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            /* Adjust width as needed to match the image */
+            text-align: left;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .form-section {
+            margin-bottom: 25px;
+        }
+        
+        .form-section h3 {
+            color: #8e24aa;
+            /* Purple color for section titles */
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow wrapping for responsiveness */
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            flex: 1;
+            /* Distribute space evenly */
+            min-width: 200px;
+            /* Minimum width for each group */
+        }
+        
+        .form-group.full-width {
+            flex-basis: 100%;
+            /* Take full width */
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select {
+            width: calc(100% - 22px);
+            /* Account for padding and border */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .form-group input[type="text"]::placeholder,
+        .form-group input[type="email"]::placeholder {
+            color: #aaa;
+        }
+        
+        .form-group.dob-group {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        .form-group.dob-group>div {
+            flex: 1;
+        }
+        
+        .form-group.dob-group label {
+            margin-bottom: 5px;
+        }
+        
+        .form-group.dob-group select {
+            width: 100%;
+        }
+        
+        .submit-button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .submit-button {
+            background-color: #6a1b9a;
+            /* Purple button */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            background-color: #8e24aa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="registration-container">
+        <h1>FORM REGISTATION</h1>
+
+        <form id="registrationForm">
+            <div class="form-section">
+                <h3>Name <span style="color: red;">*</span></h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+                <h3>NIM</h3>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <input type="text" id="nisn" name="nisn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Address</h3>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <input type="text" id="jalanKampung" name="jalanKampung" placeholder="Jalan / Kampung">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="kecamatan" name="kecamatan" placeholder="Kecamatan">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="kotaKabupaten" name="kotaKabupaten" placeholder="Kota/Kabupaten">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="kodePos" name="kodePos" placeholder="Kode Pos">
+                    </div>
+                    <div class="form-group">
+                        <select id="provinsi" name="provinsi">
+                            <option value="">Please Select</option>
+                            <option value="Sulawesi Utara">Sulawesi Utara</option>
+                            <option value="Jawa Barat">Jawa Barat</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <select id="negara" name="negara">
+                            <option value="">Please Select</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Malaysia">Malaysia</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Date of Birth <span style="color: red;">*</span></h3>
+                <div class="form-row dob-group">
+                    <div class="form-group">
+                        <label for="dobMonth">bulan</label>
+                        <select id="dobMonth" name="dobMonth" required>
+                            <option value="">Please select a month</option>
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="12">Desember</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dobDay">tanggal</label>
+                        <select id="dobDay" name="dobDay" required>
+                            <option value="">Please select a day</option>
+                            <script>
+                                for (let i = 1; i <= 31; i++) {
+                                    document.write(`<option value="${i < 10 ? '0' + i : i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dobYear">tahun</label>
+                        <select id="dobYear" name="dobYear" required>
+                            <option value="">Please select a year</option>
+                            <script>
+                                const currentYear = new Date().getFullYear();
+                                for (let i = currentYear; i >= currentYear - 100; i--) {
+                                    document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>E-mail <span style="color: red;">*</span></h3>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <input type="email" id="email" name="email" placeholder="ex: myname@example.com" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>HP</h3>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <input type="text" id="hp" name="hp">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="submit-button-container">
+                <button type="submit" class="submit-button">Submit Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // For demonstration, simply redirect to the login page
+            // In a real application, you would send this data to a server
+            // and handle the response before redirecting.
+            alert('Form submitted successfully! Redirecting to login page.');
+            window.location.href = 'login.html'; // Redirect to your login page
+        });
+    </script>
+</body>
+
+</html>
