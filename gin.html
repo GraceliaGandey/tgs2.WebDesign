@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Universitas Klabat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        .login-container {
+            background-color: white;
+            padding: 0;
+            /* Padding ditangani oleh kelas Bootstrap p-4 */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .header-image {
+            background: linear-gradient(to right, #6a1b9a, #8e24aa);
+            /* Gradien Ungu */
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            padding-top: 30px;
+            padding-bottom: 20px;
+            /* Padding disesuaikan untuk jarak yang lebih baik */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            /* Jarak di bawah header */
+        }
+        
+        .header-image img {
+            max-width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+            /* Margin diperbesar untuk logo */
+        }
+        
+        .header-image h1 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
+            font-weight: normal;
+        }
+        
+        .header-image p {
+            color: white;
+            font-size: 14px;
+            margin: 0;
+            font-style: italic;
+        }
+        
+        .form-content {
+            padding: 30px;
+            /* Terapkan padding ke area konten formulir */
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+            position: relative;
+        }
+        
+        .form-group .form-control {
+            padding-right: 40px;
+            /* Ruang untuk ikon */
+        }
+        
+        .padlock-icon {
+            position: absolute;
+            right: 10px;
+            /* Posisi ikon di dalam input */
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ccc;
+            /* Warna ikon lebih terang */
+            font-size: 1.2rem;
+            pointer-events: none;
+            /* Agar tidak menghalangi input */
+        }
+        
+        .buttons .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .buttons .btn-primary {
+            background-color: #6a1b9a;
+            /* Tombol Ungu */
+            border-color: #6a1b9a;
+        }
+        
+        .buttons .btn-primary:hover {
+            background-color: #8e24aa;
+            border-color: #8e24aa;
+        }
+        
+        .buttons .btn-secondary {
+            background-color: #f0f0f0;
+            /* Tombol Abu-abu untuk Reset Session */
+            color: #333;
+            border-color: #f0f0f0;
+        }
+        
+        .buttons .btn-secondary:hover {
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="header-image">
+            <img src="LOGO_UNIVERSITAS_KLABAT.png" alt="Unklab Logo">
+            <h1>UNIVERSITAS KLABAT</h1>
+            <p>Pathway to Excellence</p>
+        </div>
+
+
+        <div class="form-content">
+            <form id="loginForm">
+                <div class="mb-3 form-group">
+                    <label for="username" class="form-label">Nama Pengguna:</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3 form-group">
+                    <label for="password" class="form-label">Kata Sandi:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <i class="fa-solid fa-lock padlock-icon"></i>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center buttons">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-secondary" id="resetSessionBtn">Reset Sesi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'user' && password === 'pass') { // Replace with actual validation logic
+                // Using SweetAlert for successful login
+                Swal.fire({
+                    title: "Berhasil Login!",
+                    text: "Anda akan diarahkan ke halaman profil.",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500 // Automatically close after 1.5 seconds
+                }).then(() => {
+                    window.location.href = 'profile.html'; // Redirect to profile page
+                });
+
+            } else {
+                // Use SweetAlert for the error message
+                Swal.fire({
+                    title: "Gagal Login!",
+                    text: "Nama pengguna atau kata sandi salah.",
+                    icon: "error",
+                    width: 600,
+                    padding: "3em",
+                    color: "#716add",
+                    background: "#fff url('images/trees.png')", // Make sure the path is correct
+                    backdrop: `
+                        rgba(0,0,123,0.4)
+                        url("/images/nyan-cat.gif")
+                        left top
+                        no-repeat
+                    `
+                });
+            }
+        });
+
+        // --- SweetAlert for Reset Session Button ---
+        document.getElementById('resetSessionBtn').addEventListener('click', function() {
+            Swal.fire({
+                title: "Apakah Anda yakin?",
+                text: "Ini akan menghapus semua data yang Anda masukkan.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, reset!",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If confirmed, clear the input fields
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                    Swal.fire(
+                        "Direset!",
+                        "Kolom input telah dikosongkan.",
+                        "success"
+                    );
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
