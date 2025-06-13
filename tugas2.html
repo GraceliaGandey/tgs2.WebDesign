@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>UNKLAB Registration Form for New Student</h1>
+    <label for="Registration Number">Registration Number:</label>
+    <input type "text">
+    <input type "text">
+    <input type "text">
+    <input type "text">
+
+    <form action="/action_page.php">
+        <fieldset>
+            <legend>Personal Information :</legend>
+            <label for="fname">Full Name:</label>
+            <input type="text" id="fname" name="fname"><br><br>
+
+            <label for="birthplace">Birthplace :</label>
+            <input type="text" id="birthplace" name="birthplace">
+
+            <label for="dob">Date of Birth :</label>
+            <input type="date" id="birthday" name="birthday">
+            <br><br>
+
+
+            <label for="gender ">Gender :</label>
+            <input type="radio " id="male " name="male">Male
+            <input type="radio " id="female " name="female">Female
+            <br><br>
+
+            <label for="status">Status :</label>
+            <select name="cars" id="status">
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+            </select>
+
+            <input type="submit " value="Submit ">
+        </fieldset>
+    </form>
+</body>
