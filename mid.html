@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Makanan Manado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Mengatur jenis font dasar untuk seluruh teks di body */
+            margin: 0; /* Menghilangkan margin default pada body */
+            background-color: #f4f4f4; /* Mengatur warna latar belakang halaman menjadi abu-abu terang */
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #a30000; /* mengatur warna latar belakang, Merah Marun Khas Manado */
+            color: white; /*mengatur warna teks di dalam navbar (putih)*/
+            padding: 15px 20px; /* Menambahkan padding di dalam navbar: 15px atas/bawah, 20px kiri/kanan */
+            display: flex; /* Menggunakan Flexbox untuk tata letak item di navbar */
+            align-items: center; /* Menyelaraskan item secara vertikal di tengah */
+            position: fixed; /* Mengatur posisi navbar agar tetap (fixed) di layar */
+            width: 100%; /* Mengatur lebar navbar*/
+            top: 0;
+            left: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .navbar .openbtn {
+            font-size: 20px; /* Mengatur ukuran font untuk tombol menu */
+            cursor: pointer; /* Mengubah kursor menjadi tangan saat diarahkan ke tombol */
+            background-color: transparent; /* Mengatur latar belakang tombol menjadi transparan */
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease; /* Menambahkan transisi halus pada perubahan warna latar belakang */
+        }
+
+        .navbar .openbtn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            height: 100%; /* Mengatur tinggi sidebar*/
+            width: 0; /* Dimulai tertutup */
+            position: fixed;
+            z-index: 1001; /* Di atas navbar */
+            top: 0;
+            left: 0;
+            background-color: #333;
+            overflow-x: hidden;
+            transition: 0.5s; /* Menambahkan transisi halus saat lebar sidebar berubah */
+            padding-top: 60px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.3); /* Menambahkan bayangan di sisi kanan sidebar */
+        }
+
+        .sidebar a {
+            padding: 15px 25px 15px 35px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+            background-color: #575757;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .sidebar h3 {
+            color: #ddd;
+            padding: 0 25px 10px 35px;
+            margin-top: 20px;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Main content styles */
+        #main {
+            transition: margin-left .5s; /* Menambahkan transisi halus pada perubahan margin kiri */
+            padding: 20px;
+            margin-top: 80px; /* Offset for fixed navbar */
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .content section {
+            margin-bottom: 40px;
+        }
+
+        .content h2 {
+            color: #a30000;
+            border-bottom: 2px solid #a30000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .menu-item {
+            background-color: #f9f9f9; /* Mengatur warna latar belakang item menu */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 16px;
+            flex-grow: 1;
+        }
+
+        .menu-item .price {
+            font-weight: bold;
+            color: #a30000;
+            text-align: right;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-height: 450px) {
+            .sidebar {padding-top: 15px;}
+            .sidebar a {font-size: 18px;}
+        }
+    </style>
+</head>
+<body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h3>Kategori</h3>
+        <a href="#nasi">Nasi</a>
+        <a href="#ikan">Ikan</a>
+        <a href="#daging">Daging</a>
+        <a href="#sayur">Sayur & Pelengkap</a>
+        <a href="#minuman">Minuman</a>
+    </div>
+
+    <div id="main">
+        <div class="navbar">
+            <button class="openbtn" onclick="openNav()">&#9776; Menu Kategori</button>
+            <h1>Menu Makanan Manado</h1>
+        </div>
+
+        <div class="content">
+            <section id="nasi">
+                <h2>Nasi</h2>
+                <div class="menu-item">
+                    <h3>Nasi putih</h3>
+                    <span class="price">Rp 5.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Nasi Kuning</h3>
+                    <p>Nasi kuning khas Manado dengan lauk abon, bihun, sambal dan kerupuk.</p>
+                    <span class="price">Rp 15.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Tinutuan (Bubur Manado)</h3>
+                    <p>Bubur sayur khas Manado dengan jagung, labu kuning, singkong, dan daun gedi.</p>
+                    <span class="price">Rp 20.000</span>
+                </div>
+            </section>
+
+            <section id="ikan">
+                <h2>Ikan</h2>
+                <div class="menu-item">
+                    <h3>Ikan Bakar Rica</h3>
+                    <p>Ikan segar dibakar dengan bumbu rica-rica pedas khas Manado.</p>
+                    <span class="price">Rp 35.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Cakalang Fufu</h3>
+                    <p>Ikan cakalang yang diasap, disuwir, dan dimasak dengan bumbu pedas.</p>
+                    <span class="price">Rp 30.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Woku Belanga</h3>
+                    <p>Ikan yang dimasak dalam bumbu woku yang kaya rempah.</p>
+                    <span class="price">Rp 40.000</span>
+                </div>
+            </section>
+
+            <section id="daging">
+                <h2>Daging</h2>
+                <div class="menu-item">
+                    <h3>Ayam Rica-Rica</h3>
+                    <p>Ayam dengan bumbu rica-rica yang pedas dan menggugah selera.</p>
+                    <span class="price">Rp 30.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>ayam kecap</h3>
+                    <p>Ayam yang dibumbui dengan kecap dan repah lainnya.</p>
+                    <span class="price">Rp 35.000</span>
+                </div>
+            </section>
+
+            <section id="sayur">
+                <h2>Sayur & Pelengkap</h2>
+                <div class="menu-item">
+                    <h3>Sayur Bunga Pepaya</h3>
+                    <p>Tumis bunga pepaya, dimasak dengan bumbu khas.</p>
+                    <span class="price">Rp 15.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Perkedel Jagung</h3>
+                    <p>Gorengan jagung manis dengan bumbu rempah.</p>
+                    <span class="price">Rp 10.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Dabu-Dabu</h3>
+                    <p>Sambal mentah khas Manado dengan irisan bawang, tomat, dan cabai.</p>
+                    <span class="price">Rp 8.000</span>
+                </div>
+            </section>
+
+            <section id="minuman">
+                <h2>Minuman</h2>
+                <div class="menu-item">
+                    <h3>Es Kacang Merah</h3>
+                    <p>Es dengan kacang merah manis, susu kental manis, dan sirup.</p>
+                    <span class="price">Rp 18.000</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Saraba</h3>
+                    <p>Minuman hangat jahe dengan santan dan gula merah.</p>
+                    <span class="price">Rp 15.000</span>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px"; /* Mengatur lebar sidebar menjadi 250px */
+            document.getElementById("main").style.marginLeft = "250px"; /* Menggeser konten utama ke kanan sejauh 250px */
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0"; /* Mengatur lebar sidebar menjadi 0 (menyembunyikan) */
+            document.getElementById("main").style.marginLeft = "0"; /* Mengembalikan margin kiri konten utama menjadi 0 */
+        }
+    </script>
+</body>
+</html>
