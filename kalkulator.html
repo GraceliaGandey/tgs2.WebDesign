@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kalkulator</title>
+    <style>
+        /* CSS*/
+        
+        body {
+            /* Gaya untuk elemen body (seluruh halaman). */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            /* Warna latar belakang halaman. */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        }
+        
+        .calculator {
+            /* Gaya untuk wadah utama kalkulator. */
+            border: 1px solid rgb(3, 3, 3);
+            border-radius: 5px;
+            width: 300px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #3a4750;
+            /* Warna latar belakang kalkulator (biru gelap). */
+            padding: 20px;
+        }
+        
+        .calculator-screen {
+            width: calc(100% - 20px);
+            height: 60px;
+            /* Tinggi layar. */
+            background-color: #222831;
+            /* Warna latar belakang layar (sangat gelap). */
+            color: #eeeeee;
+            text-align: right;
+            padding: 10px;
+            font-size: 2.5em;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        
+        .calculator-keys {
+            /* Gaya untuk wadah tombol-tombol kalkulator. */
+            display: grid;
+            gap: 10px;
+            /* Jarak antar tombol. */
+        }
+        
+        .row {
+            /* Gaya untuk setiap baris tombol. */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            /* Jarak antar tombol dalam baris. */
+        }
+        
+        .row:first-child {
+            /* Mengatur tata letak untuk baris pertama tombol (AC, DEL, /). */
+            grid-template-columns: 1fr 1fr 1fr;
+            /* 3 kolom dengan lebar yang sama. */
+        }
+        
+        .row:nth-child(2),
+        .row:nth-child(3),
+        .row:nth-child(4) {
+            /* Mengatur tata letak untuk baris ke-2, ke-3, dan ke-4 (angka dan operator). */
+            grid-template-columns: repeat(4, 1fr);
+            /* 4 kolom dengan lebar yang sama. */
+        }
+        
+        .row:last-child {
+            /* Mengatur tata letak untuk baris terakhir (0, ., =). */
+            grid-template-columns: 2fr 1fr 1fr;
+            /* Kolom pertama (0) dua kali lebih lebar dari dua kolom berikutnya. */
+        }
+        
+        button {
+            /* Gaya dasar untuk semua tombol. */
+            height: 60px;
+            /* Tinggi tombol. */
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            color: #eeeeee;
+            background-color: #475a6c;
+            /* Warna latar belakang tombol default. */
+        }
+        
+        button:hover {
+            /* Gaya saat tombol di-hover. */
+            background-color: #5d7488;
+            /* Warna latar belakang tombol saat di-hover. */
+        }
+        
+        .operator {
+            /* Gaya untuk tombol operator (+, -, *, /). */
+            background-color: #f9a31a;
+            /* Warna latar belakang operator (oranye). */
+        }
+        
+        .operator:hover {
+            /* Gaya saat tombol operator di-hover. */
+            background-color: #ffb74d;
+        }
+        
+        .equal-sign {
+            /* Gaya untuk tombol sama dengan (=). */
+            background-color: #00bcd4;
+            grid-column: span 1;
+        }
+        
+        .equal-sign:hover {
+            /* Gaya saat tombol sama dengan di-hover. */
+            background-color: #26d0e7;
+        }
+        
+        .all-clear,
+        .delete {
+            /* Gaya untuk tombol AC dan DEL. */
+            background-color: #e74c3c;
+        }
+        
+        .all-clear:hover,
+        .delete:hover {
+            /* Gaya saat tombol AC dan DEL di-hover. */
+            background-color: #f06253;
+        }
+        
+        .zero-btn {
+            /* Gaya untuk tombol angka 0. */
+            grid-column: span 2;
+            /* Membuat tombol '0' menempati dua kolom. */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" class="calculator-screen" value="" disabled />
+        <div class="calculator-keys">
+            <div class="row">
+                <button class="all-clear">AC</button>
+                <button class="delete">DEL</button>
+                <button class="operator" value="/"> &divide;</button>
+            </div>
+
+            <div class="row">
+                <!-- Baris tombol kedua. -->
+                <button class="number" value="7">7</button>
+                <button class="number" value="8">8</button>
+                <button class="number" value="9">9</button>
+                <button class="operator" value="*">&times;</button>
+            </div>
+
+            <div class="row">
+                <!-- Baris tombol ketiga. -->
+                <button class="number" value="4">4</button>
+                <button class="number" value="5">5</button>
+                <button class="number" value="6">6</button>
+                <button class="operator" value="-">-</button>
+            </div>
+
+            <div class="row">
+                <!-- Baris tombol keempat. -->
+                <button class="number" value="1">1</button>
+                <button class="number" value="2">2</button>
+                <button class="number" value="3">3</button>
+                <button class="operator" value="+">+</button>
+            </div>
+
+            <div class="row">
+                <!-- Baris tombol kelima -->
+                <button class="number zero-btn" value="0">0</button>
+                <button class="decimal" value=".">.</button>
+                <button class="equal-sign">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* JavaScript */
+
+        // Mendapatkan elemen div dengan kelas 'calculator'.
+        const calculator = document.querySelector('.calculator');
+        const calculatorScreen = document.querySelector('.calculator-screen');
+        const keys = document.querySelector('.calculator-keys');
+
+        let prevNumber = ''; /* Variabel untuk menyimpan angka pertama atau hasil sebelumnya */
+        let currentNumber = '0'; /* Variabel untuk menyimpan angka yang sedang ditampilkan/dimasukkan */
+        let operator = ''; /* Variabel untuk menyimpan operator yang dipilih (+, -, *, /) */
+        let result = ''; /* Variabel untuk menyimpan hasil perhitungan terakhir */
+
+        function updateScreen(number) { /* Fungsi untuk memperbarui tampilan di layar kalkulator */
+            calculatorScreen.value = number; /* Mengatur nilai input layar kalkulator */
+        }
+
+        function handleNumber(number) {
+            if (currentNumber === '0' || currentNumber === result) {
+                currentNumber = number;
+            } else {
+                currentNumber += number;
+            }
+            updateScreen(currentNumber); /*Perbarui layar dengan angka yang baru*/
+        }
+
+        function handleOperator(op) {
+            // Fungsi untuk menangani input operator.
+            if (operator === '') {
+                // Jika belum ada operator yang dipilih,
+                prevNumber = currentNumber;
+                // Simpan angka saat ini sebagai angka sebelumnya (operand pertama).
+            } else if (prevNumber !== '') {
+                // Jika sudah ada operator dan angka sebelumnya,
+                calculate();
+                // Lakukan perhitungan segera.
+                prevNumber = result;
+                // Hasil perhitungan menjadi angka sebelumnya untuk operasi selanjutnya.
+            }
+            operator = op;
+            // Simpan operator yang baru dipilih.
+            currentNumber = '0';
+            // Reset angka saat ini menjadi '0' untuk input angka berikutnya.
+            result = '';
+            // Hapus hasil sebelumnya saat operator baru ditekan.
+        }
+
+        function handleDecimal() {
+            if (!currentNumber.includes('.')) {
+                currentNumber += '.';
+            }
+            updateScreen(currentNumber);
+        }
+
+        function handleAllClear() {
+            prevNumber = '';
+            currentNumber = '0';
+            operator = '';
+            result = '';
+            updateScreen(currentNumber);
+        }
+
+        function handleDelete() {
+            if (currentNumber.length > 1) {
+                currentNumber = currentNumber.slice(0, -1);
+            } else {
+                currentNumber = '0';
+            }
+            updateScreen(currentNumber);
+        }
+
+        function calculate() {
+            // Fungsi untuk melakukan perhitungan.
+            let calculation = 0;
+            const prev = parseFloat(prevNumber);
+            const current = parseFloat(currentNumber);
+
+            if (isNaN(prev) || isNaN(current)) return;
+
+            switch (operator) {
+                // Melakukan operasi berdasarkan operator yang dipilih.
+                case '+':
+                    calculation = prev + current;
+                    // Penjumlahan.
+                    break;
+                case '-':
+                    calculation = prev - current;
+                    // Pengurangan.
+                    break;
+                case '*':
+                    calculation = prev * current;
+                    // Perkalian.
+                    break;
+                case '/':
+                    // Jika operator adalah bagi,
+                    if (current === 0) {
+                        const messageBox = document.createElement('div');
+                        messageBox.style.cssText = `
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background-color: #ff4d4d;
+                            color: white;
+                            padding: 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                            z-index: 1000;
+                            text-align: center;
+                            font-size: 1.2em;
+                        `;
+                        // Mengatur gaya CSS untuk kotak pesan (posisi, warna, ukuran, bayangan).
+                        messageBox.textContent = "Tidak bisa membagi dengan nol!";
+                        document.body.appendChild(messageBox);
+                        setTimeout(() => {
+                            document.body.removeChild(messageBox);
+                        }, 2000);
+                        calculation = 0;
+                    } else {
+                        calculation = prev / current;
+                        // Pembagian normal.
+                    }
+                    break;
+
+                default:
+                    return;
+            }
+            result = calculation.toString();
+            currentNumber = result;
+            prevNumber = '';
+            operator = '';
+            updateScreen(result);
+        }
+
+        keys.addEventListener('click', (event) => {
+            const {
+                target
+            } = event;
+            if (!target.matches('button')) {
+                return;
+            }
+
+            if (target.classList.contains('number')) {
+                handleNumber(target.value);
+            } else if (target.classList.contains('operator')) {
+                handleOperator(target.value);
+            } else if (target.classList.contains('decimal')) {
+                handleDecimal();
+            } else if (target.classList.contains('all-clear')) {
+                handleAllClear();
+            } else if (target.classList.contains('delete')) {
+                handleDelete();
+            } else if (target.classList.contains('equal-sign')) {
+                calculate();
+            }
+        });
+
+        updateScreen(currentNumber);
+        /* JavaScript Berakhir di Sini */
+    </script>
+</body>
+
+</html>
